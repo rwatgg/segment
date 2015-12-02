@@ -70,6 +70,11 @@ Segment.prototype = {
                 finalBegin = this.valueOf(begin),
                 finalEnd = this.valueOf(end);
 
+            // no delay
+            if(typeof onStart === 'function'){
+                onStart.call(that.context);
+            }
+
             (function calc(){
                 var now = new Date(),
                     elapsed = (now-startTime)/1000,
