@@ -47,6 +47,7 @@ Segment.prototype = {
             var delay = options && options.hasOwnProperty('delay') ? parseFloat(options.delay) * 1000 : 0,
                 easing = options && options.hasOwnProperty('easing') ? options.easing : null,
                 callback = options && options.hasOwnProperty('callback') ? options.callback : null,
+                onStart = options && options.hasOwnProperty('onStart') ? options.onStart : null,
                 that = this;
 
             this.circular = options && options.hasOwnProperty('circular') ? options.circular : false;
@@ -55,6 +56,9 @@ Segment.prototype = {
             if(delay) {
                 delete options.delay;
                 this.timer = setTimeout(function () {
+                    if(typeof onStart === 'function'){
+                        onStart.call(that.context);
+                    }
                     that.draw(begin, end, duration, options);
                 }, delay);
                 return this.timer;
