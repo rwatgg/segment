@@ -32,7 +32,11 @@
 
 function Segment(path, begin, end) {
     this.path = path;
-    this.length = path.getTotalLength();
+    if(path.tagName.toLowerCase() == "circle"){
+        this.length = 2*Math.PI*end;
+    }else{
+        this.length = path.getTotalLength();
+    }
     this.path.style.strokeDashoffset = this.length * 2;
     this.begin = typeof begin !== 'undefined' ? this.valueOf(begin) : 0;
     this.end = typeof end !== 'undefined' ? this.valueOf(end) : this.length;
