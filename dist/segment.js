@@ -59,9 +59,13 @@ Segment.prototype = {
 
             this.circular = options && options.hasOwnProperty('circular') ? options.circular : false;
 
+            if(begin == 0 && this.timer !== null)
+                clearTimeout(this.timer);
+
             this.stop();
             if(delay) {
                 delete options.delay;
+
                 this.timer = setTimeout(function () {
                     if(typeof onStart === 'function'){
                         onStart.call(that.context);
