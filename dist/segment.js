@@ -68,7 +68,7 @@ Segment.prototype = {
 
                 this.timer = setTimeout(function () {
                     if(typeof onStart === 'function'){
-                        onStart.call(that.context);
+                        onStart.call(that);
                     }
                     that.draw(begin, end, duration, options);
                 }, delay);
@@ -83,7 +83,7 @@ Segment.prototype = {
 
             // no delay
             if(typeof onStart === 'function'){
-                onStart.call(that.context);
+                onStart.call(that);
             }
 
             (function calc(){
